@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>MindWell Login</title>
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="app-container login-container">
+    <header><h1>MindWell Login</h1></header>
+    <main>
+      <form id="login-form">
+        <input type="text" id="user-id" placeholder="Enter your User ID" required />
+        <input type="password" id="user-password" placeholder="Enter your Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <div id="login-msg"></div>
+      <hr />
+      <p>New User? Just fill above and click Login to create account.</p>
+    </main>
+  </div>
+
+  <script>
+    const alreadyLoggedIn = localStorage.getItem('mindwell_logged_in');
+    if (alreadyLoggedIn) {
+      location.href = 'index.html';
+    }
+
+    document.getElementById('login-form').onsubmit = function (e) {
+      e.preventDefault();
+      const id = document.getElementById('user-id').value.trim();
+      const pwd = document.getElementById('user-password').value;
+      if (!id || !pwd) {
+        document.getElementById('login-msg').innerText = "Please enter both User ID and Password.";
+        return;
+      }
+      let storedUsers = JSON.parse(localStorage.getItem('mindwell_users') || '{}');
+      if (storedUsers[id]) {
+        if (storedUsers[id] !== pwd) {
+          document.getElementById('login-msg').innerText = "Incorrect password.";
+          return;
+        }
+      } else {
+        storedUsers[id] = pwd;
+        localStorage.setItem('mindwell_users', JSON.stringify(storedUsers));
+        alert("New user created. Logged in.");
+      }
+      localStorage.setItem('mindwell_logged_in', id);
+      location.href = 'index.html';
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MindWell | Mental Health Check-in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <img src="https://img.icons8.com/color/96/mental-health.png" alt="MindWell Logo" class="logo">
+                <h1>MindWell</h1>
+                <p class="subtitle">Your Friendly Daily Check-in</p>
+            </div>
+            <div style="position:absolute; right:14px; top:14px;">
+                <button id="logout-btn" class="start-over-btn" style="padding:6px 12px; border-radius:12px;">Logout</button>
+            </div>
+        </header>
+        <main>
+            <div class="chat-container" id="chat-box"></div>
+            <div class="input-row">
+                <input type="text" id="user-input" maxlength="300" autocomplete="off" placeholder="Type your message..." />
+                <button id="send-btn" aria-label="send">&#10148;</button>
+            </div>
+            <button class="start-over-btn" id="new-checkin-btn">+ New Check-in</button>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
